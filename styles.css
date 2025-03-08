@@ -54,9 +54,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: red;
+    width: 100vw;
+    height: 100vh;
+    background: black;
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -68,15 +68,15 @@ body {
     object-fit: cover;
 }
 
-/* Rung màn hình */
+/* Hiệu ứng rung mạnh */
 @keyframes shake {
     0% { transform: translate(0px, 0px); }
-    25% { transform: translate(5px, -5px); }
-    50% { transform: translate(-5px, 5px); }
-    75% { transform: translate(5px, 5px); }
+    25% { transform: translate(10px, -10px); }
+    50% { transform: translate(-10px, 10px); }
+    75% { transform: translate(10px, 10px); }
     100% { transform: translate(0px, 0px); }
 }
 
 .shake {
-    animation: shake 0.1s infinite;
+    animation: shake 0.2s infinite;
 }
