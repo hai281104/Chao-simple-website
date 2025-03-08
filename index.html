@@ -9,10 +9,18 @@
 <body>
     <h1>dino sakura nhảy</h1>
     <p>Nhấn **phím cách (Space)** hoặc **chạm vào màn hình** để nhảy</p>
+    <button id="pauseBtn">Tạm dừng</button>
     <div id="game" onclick="jump()">
         <div id="dino"></div>
         <div id="cactus"></div>
     </div>
+    
+    <!-- Jumpscare -->
+    <div id="jumpscare">
+        <img src="jumpscare.jpg" id="scaryImage">
+        <audio id="scarySound" src="jumpscare.mp3"></audio>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
