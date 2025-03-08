@@ -1,28 +1,49 @@
 body {
-    background-color: #a0c4ff; /* Xanh dương nhạt */
-    color: #ffffff;
-    font-family: Arial, sans-serif;
     text-align: center;
-    padding: 50px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-.container {
-    background-color: #0056b3; /* Xanh dương đậm */
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
+#game {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    border: 2px solid black;
+    margin: auto;
+    overflow: hidden;
+    background-color: white;
 }
 
-button {
-    background-color: #ffffff;
-    color: #0056b3;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+#dino {
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
 }
 
-button:hover {
-    background-color: #dddddd;
+#cactus {
+    width: 20px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    animation: move 2s linear infinite;
+}
+
+@keyframes move {
+    from { right: 0; }
+    to { right: 600px; }
+}
+
+.jump {
+    animation: jump 0.5s ease-in-out;
+}
+
+@keyframes jump {
+    0% { bottom: 0; }
+    50% { bottom: 100px; }
+    100% { bottom: 0; }
 }
