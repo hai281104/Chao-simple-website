@@ -67,11 +67,13 @@ scarySound.play().then(() => {
     console.log("Âm thanh chưa thể phát do trình duyệt chặn, sẽ phát khi jumpscare.");
 });
 
-// Hiển thị jumpscare giống The Boiled One
+// Hiển thị jumpscare toàn màn hình
 function showJumpscare() {
     clearInterval(checkCollision);
-    document.getElementById("jumpscare").style.display = "flex";
-    document.getElementById("scarySound").play();
+    let jumpscare = document.getElementById("jumpscare");
+    jumpscare.style.display = "flex";
+    
+    scarySound.play();
     document.body.classList.add("shake");
 
     setTimeout(() => {
