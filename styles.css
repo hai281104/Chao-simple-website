@@ -29,7 +29,7 @@ body {
     background-color: green;
     position: absolute;
     bottom: 0;
-    right: -20px; /* Để tránh hiện lỗi ngay từ đầu */
+    right: -20px;
     animation: move 2s linear infinite;
 }
 
