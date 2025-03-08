@@ -1,3 +1,3 @@
 function showMessage() {
-    alert("Hello");
+    alert("Có cc tao chào");
 }
