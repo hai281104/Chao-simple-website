@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Đơn Giản</title>
+    <title>Khủng Long Nhảy</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Chào mừng!</h1>
-        <button onclick="showMessage()">Bấm vào đây</button>
+    <h1>Trò chơi khủng long</h1>
+    <p>Nhấn **phím cách (Space)** hoặc **chạm vào màn hình** để nhảy</p>
+    <div id="game" onclick="jump()">
+        <div id="dino"></div>
+        <div id="cactus"></div>
     </div>
     <script src="script.js"></script>
 </body>
