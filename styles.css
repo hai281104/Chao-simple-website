@@ -29,12 +29,12 @@ body {
     background-color: green;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: -20px; /* Để tránh hiện lỗi ngay từ đầu */
     animation: move 2s linear infinite;
 }
 
 @keyframes move {
-    from { right: 0; }
+    from { right: -20px; }
     to { right: 600px; }
 }
 
