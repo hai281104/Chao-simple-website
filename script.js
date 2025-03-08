@@ -1,12 +1,32 @@
+let gamePaused = false;
+let checkCollision;
+let cactus = document.getElementById("cactus");
+
+// Sự kiện bàn phím
 document.addEventListener("keydown", function(event) {
     if (event.code === "Space") {
         jump();
     }
 });
 
-// Hỗ trợ cảm ứng trên điện thoại
+// Hỗ trợ cảm ứng
 document.getElementById("game").addEventListener("touchstart", function() {
     jump();
+});
+
+// Nút tạm dừng
+document.getElementById("pauseBtn").addEventListener("click", function() {
+    if (!gamePaused) {
+        cactus.style.animationPlayState = "paused";
+        clearInterval(checkCollision);
+        gamePaused = true;
+        this.textContent = "Tiếp tục";
+    } else {
+        cactus.style.animationPlayState = "running";
+        startCollisionCheck();
+        gamePaused = false;
+        this.textContent = "Tạm dừng";
+    }
 });
 
 function jump() {
@@ -19,20 +39,37 @@ function jump() {
     }
 }
 
-// Kiểm tra va chạm chính xác hơn
-let checkCollision = setInterval(() => {
-    let dino = document.getElementById("dino");
-    let cactus = document.getElementById("cactus");
+// Bắt đầu kiểm tra va chạm
+function startCollisionCheck() {
+    checkCollision = setInterval(() => {
+        let dino = document.getElementById("dino");
+        let cactus = document.getElementById("cactus");
 
-    let dinoRect = dino.getBoundingClientRect();
-    let cactusRect = cactus.getBoundingClientRect();
+        let dinoRect = dino.getBoundingClientRect();
+        let cactusRect = cactus.getBoundingClientRect();
 
-    if (
-        dinoRect.right > cactusRect.left &&
-        dinoRect.left < cactusRect.right &&
-        dinoRect.bottom > cactusRect.top
-    ) {
-        alert("Game Over!");
+        if (
+            dinoRect.right > cactusRect.left &&
+            dinoRect.left < cactusRect.right &&
+            dinoRect.bottom > cactusRect.top
+        ) {
+            showJumpscare();
+        }
+    }, 50);
+}
+
+// Hiển thị jumpscare giống The Boiled One
+function showJumpscare() {
+    clearInterval(checkCollision);
+    document.getElementById("jumpscare").style.display = "flex";
+    document.getElementById("scarySound").play();
+    document.body.classList.add("shake");
+
+    setTimeout(() => {
+        document.body.classList.remove("shake");
         location.reload();
-    }
-}, 50);
+    }, 2000);
+}
+
+// Bắt đầu kiểm tra va chạm
+startCollisionCheck();
