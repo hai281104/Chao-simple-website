@@ -4,7 +4,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-// Hỗ trợ chạm màn hình trên điện thoại
+// Hỗ trợ cảm ứng trên điện thoại
 document.getElementById("game").addEventListener("touchstart", function() {
     jump();
 });
@@ -19,15 +19,19 @@ function jump() {
     }
 }
 
-// Kiểm tra va chạm
+// Kiểm tra va chạm chính xác hơn
 let checkCollision = setInterval(() => {
     let dino = document.getElementById("dino");
     let cactus = document.getElementById("cactus");
 
-    let dinoBottom = parseInt(window.getComputedStyle(dino).getPropertyValue("bottom"));
-    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("right"));
+    let dinoRect = dino.getBoundingClientRect();
+    let cactusRect = cactus.getBoundingClientRect();
 
-    if (cactusLeft > 540 && cactusLeft < 590 && dinoBottom <= 40) {
+    if (
+        dinoRect.right > cactusRect.left &&
+        dinoRect.left < cactusRect.right &&
+        dinoRect.bottom > cactusRect.top
+    ) {
         alert("Game Over!");
         location.reload();
     }
