@@ -57,16 +57,43 @@ function startCollisionCheck() {
         }
     }, 50);
 }
-// Tải trước âm thanh để tránh lỗi lần chết đầu tiên không có tiếng
+// Lấy thẻ âm thanh
 let scarySound = document.getElementById("scarySound");
-scarySound.volume = 1.0;
-scarySound.play().then(() => {
+
+// Bắt buộc tải trước âm thanh
+function preloadAudio() {
+    scarySound.volume = 1.0;
+    scarySound.load(); // Bắt trình duyệt tải file
+    scarySound.play().then(() => {
+        scarySound.pause();
+        scarySound.currentTime = 0;
+    }).catch(() => {
+        console.log("Trình duyệt chặn phát âm thanh, sẽ phát sau.");
+    });
+}
+
+// Gọi preload khi trang load
+window.addEventListener("load", preloadAudio);
+
+// Hiển thị jumpscare với âm thanh ngay lập tức
+function showJumpscare() {
+    clearInterval(checkCollision);
+
+    let jumpscare = document.getElementById("jumpscare");
+    jumpscare.style.display = "flex";
+
+    // Dừng âm thanh nếu đang phát dở, rồi phát ngay lập tức
     scarySound.pause();
     scarySound.currentTime = 0;
-}).catch(error => {
-    console.log("Âm thanh chưa thể phát do trình duyệt chặn, sẽ phát khi jumpscare.");
-});
+    scarySound.play();
 
+    document.body.classList.add("shake");
+
+    setTimeout(() => {
+        document.body.classList.remove("shake");
+        location.reload();
+    }, 2000);
+}
 // Hiển thị jumpscare toàn màn hình
 function showJumpscare() {
     clearInterval(checkCollision);
