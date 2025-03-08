@@ -57,6 +57,15 @@ function startCollisionCheck() {
         }
     }, 50);
 }
+// Tải trước âm thanh để tránh lỗi lần chết đầu tiên không có tiếng
+let scarySound = document.getElementById("scarySound");
+scarySound.volume = 1.0;
+scarySound.play().then(() => {
+    scarySound.pause();
+    scarySound.currentTime = 0;
+}).catch(error => {
+    console.log("Âm thanh chưa thể phát do trình duyệt chặn, sẽ phát khi jumpscare.");
+});
 
 // Hiển thị jumpscare giống The Boiled One
 function showJumpscare() {
